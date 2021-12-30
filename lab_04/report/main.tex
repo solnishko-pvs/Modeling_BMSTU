@@ -1,0 +1,274 @@
+\documentclass[12pt,a4paper,oneside]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{sverb}
+\usepackage{graphicx}
+\usepackage{pdfpages}
+\usepackage{url}
+\usepackage{titlesec, blindtext, color}
+\usepackage{listings}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\graphicspath{{../}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\usepackage{tabularx}
+\usepackage{subcaption}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage{longtable}
+\usepackage{enumitem}
+\usepackage{algorithm}
+\usepackage{tikz}
+\usepackage[noend]{algpseudocode}
+\usepackage{float}
+\definecolor{gray75}{gray}{0.75}
+\definecolor{Blue}{HTML}{5D8AA8}
+\newcommand{\hsp}{\hspace{20pt}}
+
+\newcommand{\RomanNumeralCaps}[1]
+{\MakeUppercase{\romannumeral #1}}
+
+
+% Для листинга кода:
+\lstset{ %
+	language=c,                 % выбор языка для подсветки (здесь это С)
+	basicstyle=\small\sffamily, % размер и начертание шрифта для подсветки кода             % где поставить нумерацию строк (слева\справа)
+	numberstyle=\tiny,           % размер шрифта для номеров строк
+	stepnumber=1, 
+	keywordstyle=\color{blue},% размер шага между двумя номерами строк
+	numbersep=5pt,                % как далеко отстоят номера строк от подсвечиваемого кода
+	showspaces=false,            % показывать или нет пробелы специальными отступами
+	showstringspaces=false,      % показывать или нет пробелы в строках
+	showtabs=false,             % показывать или нет табуляцию в строках
+	frame=single,              % рисовать рамку вокруг кода
+	tabsize=2,                 % размер табуляции по умолчанию равен 2 пробелам
+	captionpos=t,              % позиция заголовка вверху [t] или внизу [b] 
+	breaklines=true,           % автоматически переносить строки (да\нет)
+	breakatwhitespace=false, % переносить строки только если есть пробел
+	escapeinside={\#*}{*)}  % Стиль литералов
+}
+
+
+\titleformat{\chapter}[hang]{\Huge\bfseries}{\thechapter.\textcolor{gray75}\hsp}{0pt}{\Huge\bfseries}
+\newcommand{\specchapter}[1]{\chapter*{#1}\addcontentsline{toc}{chapter}{#1}}
+\newcommand{\specsection}[1]{\section*{#1}\addcontentsline{toc}{section}{#1}}
+\newcommand{\specsubsection}[1]{\subsection*{#1}\addcontentsline{toc}{subsection}{#1}}
+
+% геометрия
+
+
+\setcounter{tocdepth}{4} % фикс переноса 
+\righthyphenmin = 2
+\tolerance = 2048
+
+
+\thispagestyle{empty}
+
+\geometry{pdftex, left = 3cm, right = 1cm, top = 2cm, bottom = 2cm}
+
+\begin{document}
+	
+	
+	% геометрия
+	
+	
+	\setcounter{tocdepth}{4} % фикс переноса 
+	\righthyphenmin = 2
+	\tolerance = 2048
+	
+	
+	\thispagestyle{empty}
+	
+	\thispagestyle{empty}
+	\noindent \begin{minipage}{0.15\textwidth}
+		\includegraphics[width=\linewidth]{b_logo}
+	\end{minipage}
+	\noindent\begin{minipage}{0.9\textwidth}\centering
+		\textbf{Министерство науки и высшего образования Российской Федерации}\\
+		\textbf{Федеральное государственное бюджетное образовательное учреждение высшего образования}\\
+		\textbf{«Московский государственный технический университет имени Н.Э.~Баумана}\\
+		\textbf{(национальный исследовательский университет)»}\\
+		\textbf{(МГТУ им. Н.Э.~Баумана)}
+	\end{minipage}
+	\noindent\rule{18cm}{3pt}
+	\newline\newline
+	\noindent ФАКУЛЬТЕТ $\underline{\textbf{«ИНФОРМАТИКА И СИСТЕМЫ УПРАВЛЕНИЯ»}}$ \newline\newline
+	\noindent КАФЕДРА $\underline{\textbf{«ПРОГРАММНОЕ ОБЕСПЕЧЕНИЕ ЭВМ И ИНФОРМАЦИОННЫЕ}}$\newline\newline $\underline{\textbf{ТЕХНОЛОГИИ»(ИУ7)}}$\newline\newline
+	\noindent НАПРАВЛЕНИЕ ПОДГОТОВКИ $\underline{\textbf{09.03.04 ПРОГРАММНАЯ ИНЖЕНЕРИЯ}}$\newline\newline\newline\newline\newline\newline\newline
+	\begin{center}
+		\begin{flushright}
+			\Large\textbf{ОТЧЕТ}\newline
+			\Large\textbf{по лабораторной работе № 4}\newline
+		\end{flushright}
+	\end{center}
+	\noindent\textbf{Название:} $\underline{\text{Моделирование простейшего прибора обслуживания}}$\newline\newline
+	\noindent\textbf{Дисциплина:} $\underline{\text{Моделирование}}$\newline\newline\newline\newline\newline\newline\newline\newline
+	\begin{tabular}{lcp{5em}lp{2em}l}
+		\noindent\textbf{Студент} &  $\underline{\text{ИУ7-71Б~~}}$ &             &\hspace{1cm} & & $\underline{\text{В.С.Плотников}}$ \\\cline{4-3}
+		& (Группа) & &(Подпись,дата)  & & (И.О.Фамилия) \\
+		& & & & &\\
+		\noindent\textbf{Преподаватель} &  & &\hspace{1cm} & &$\underline{\text{И.В.Рудаков ~~~~}}$ \\\cline{4-3} 
+		&  & & (Подпись,дата)  & &(И.О.Фамилия) \\
+	\end{tabular}
+	\begin{center}
+		\vfill
+		Москва, \the\year
+	\end{center}
+	\clearpage
+
+
+
+\section*{Условие}
+\quad Необходимо смоделировать систему, состоящую из генератора, памяти, и обслуживающего аппарата. Генератор подает сообщения, распределенные по равномерному закону, они приходят в память и выбираются на обработку по закону из ЛР1. Количество заявок конечно и задано. Предусмотреть случай, когда обработанная заявка возвращается обратно в очередь. Необходимо определить оптимальную длину очереди, при которой не будет потерянных сообщений. Реализовать двумя способами: используя пошаговый и событийный подходы.
+
+\section*{Распределение Пуассона}
+\quad Распределение Пуассона моделирует случайную величину, представляющую
+собой число событий, произошедших за фиксированное время, при условии, что
+данные события происходят с некоторой фиксированной средней интенсивностью и независимо друг от друга.
+
+Распределение Пуассона также называется распределением редких событий.
+
+Функция распределения Пуассона:
+\begin{equation}
+    F(x;\lambda) = \begin{cases}
+            \sum_{i=0}^x \frac{e^{-\lambda} \lambda^i}{i!}, x \geq 0\\\\
+            0 \text{ иначе }
+    \end{cases}
+\end{equation}
+Функция плотности вероятности распределения Пуассона:
+\begin{equation}
+    f(x;\lambda) = \begin{cases}
+            \frac{e^{-\lambda} \lambda^x}{x!}, x \geq 0\\\\
+            0 \text{ иначе }
+    \end{cases}
+\end{equation}
+
+\section*{Равномерное распределение}
+\quad Равномерное распределение — распределение случайной величины, принимающей значения, принадлежащие некоторому промежутку конечной длины, характеризующееся тем, что плотность вероятности на этом промежутке всюду постоянна.
+
+Равномерное распределение обозначают $X \sim R(a, b)$, где a, b $\in$ R. 
+
+Функция распределения равномерной непрерывной случайной величины:
+\begin{equation}
+    F(x) = \begin{cases}
+            0 \text{ при } x \geq a\\\\
+            \frac{x-a}{b-a} \text{ при } a \leq x \leq b\\\\
+            1 \text{ при } x > b
+    \end{cases}
+\end{equation}
+Плотность распределения равномерной непрерывной случайной величины:
+\begin{equation}
+    f(x) = \begin{cases}
+            \frac{1}{b-a} \text{ при } a \leq x \leq b\\\\
+            0 \text{ иначе }
+    \end{cases}
+\end{equation}
+\clearpage
+
+
+\subsection*{Пошаговый подход}
+\quad Заключается в последовательном анализе состояний всех блоков системы в момент $t + \Delta t$. Новое состояние определяется в соответствии с их алгоритмическим описанием с учетом действия случайных факторов. В результате этого анализа принимается решение о том, какие системные события должны имитироваться на данный момент времени. Основной недостаток: значительные затраты и опасность пропуска события при больших $\Delta t$.
+
+
+\subsection*{Событийная модель}
+\quad Состояния отдельных устройств изменяются в дискретные моменты времени. При использовании событийного принципа, состояния всех блоков системы анализируются лишь в момент возникновения какого либо события. Момент наступления следующего события определяется минимальным значением из списка будущих событий, представляющего собой совокупность моментов ближайшего изменения состояния каждого из блоков системы.
+
+\section*{Результат}
+\quad Рассмотрим максимальное количество заявок в очереди при генерации 1000/5000/10000 заявок с различными вероятностями возврата заявок  в очередь после обработки. 
+
+Настройки распределений для исследования возьмем следующие: $\lambda$ = 5 для Пуассона, a = 1 и b = 10 для равномерного распределения.\\
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.7]{1_1.png}
+	\label{fig:screenshot001}
+	\caption{Результат при обработке 1000 заявок и 0\% повторений}
+\end{figure}
+\clearpage
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.7]{1_2.png}
+	\label{fig:screenshot002}
+	\caption{Результат при обработке 1000 заявок и 10\% повторений}
+\end{figure}
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.7]{1_3.png}
+	\label{fig:screenshot003}
+	\caption{Результат при обработке 1000 заявок и 40\% повторений}
+\end{figure}
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.7]{1_4.png}
+	\label{fig:screenshot004}
+	\caption{Результат при обработке 1000 заявок и 80\% повторений}
+\end{figure}
+\clearpage
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.7]{2_1.png}
+	\label{fig:screenshot005}
+	\caption{Результат при обработке 5000 заявок и 0\% повторений}
+\end{figure}
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.7]{2_2.png}
+	\label{fig:screenshot006}
+	\caption{Результат при обработке 5000 заявок и 10\% повторений}
+\end{figure}
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.7]{2_3.png}
+	\label{fig:screenshot007}
+	\caption{Результат при обработке 5000 заявок и 40\% повторений}
+\end{figure}
+\clearpage
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.7]{2_4.png}
+	\label{fig:screenshot008}
+	\caption{Результат при обработке 5000 заявок и 80\% повторений}
+\end{figure}
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.7]{3_1.png}
+	\label{fig:screenshot009}
+	\caption{Результат при обработке 10000 заявок и 0\% повторений}
+\end{figure}
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.7]{3_2.png}
+	\label{fig:screenshot010}
+	\caption{Результат при обработке 10000 заявок и 10\% повторений}
+\end{figure}
+\clearpage
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.7]{3_3.png}
+	\label{fig:screenshot011}
+	\caption{Результат при обработке 10000 заявок и 40\% повторений}
+\end{figure}
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.7]{3_4.png}
+	\label{fig:screenshot012}
+	\caption{Результат при обработке 10000 заявок и 80\% повторений}
+\end{figure}
+
+Можно сделать вывод о необходимой длине очереди, чтобы не было потерянных сообщений.
+\end{document}
+
